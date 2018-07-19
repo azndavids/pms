@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ticket;
 
+use App\Remark;
 use Session;
+
 
 class TicketController extends Controller
 {
@@ -18,6 +20,33 @@ class TicketController extends Controller
     {
         $tickets=Ticket::all();
         return view('ticket.index',compact('tickets'));
+    }
+
+    public function remarks($ticket)
+    {
+      // dd($ticket);
+
+      $data = Ticket::where('id', '=', $ticket)->with('remarks')->get();
+       // $ranks = Log::with('events')->get();
+      // dd($data);
+      return view('ticket.remarks', compact('data'));
+    }
+
+    public function add(Request $request)
+    {
+
+      // dd($request->all());
+      $remark= new Remark;
+      $remark->remarks = $request->get('remarks');
+      $remark->ticket_id = $request->get('ticket_id');
+
+      $remark->save();
+
+      $id=$request->get('ticket_id');
+
+
+      return redirect()->route('ticket.remarks',$id)->with(['alert-msg' => 'Even registered successfully', 'alert-type' => 'success']);
+
     }
 
     /**
@@ -52,7 +81,8 @@ class TicketController extends Controller
         $tickets->save();
 
 
-        return redirect()->route('tickets.index')->with('alert', 'Information has been added');
+        return redirect()->route('tickets.index')->with(['alert-msg' => 'Even registered successfully', 'alert-type' => 'success']);
+
     }
 
     /**
@@ -100,9 +130,12 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ticket $ticket)
+    public function edit($ticket)
     {
-        return view('ticket.edit', compact('ticket'));
+      $data = Ticket::where('id', '=', $ticket)->with('remarks')->get();
+       // $ranks = Log::with('events')->get();
+      // dd($data);
+      return view('ticket.edit', compact('data'));
     }
 
     /**
@@ -140,11 +173,13 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        
         $ticket =Ticket::find($id);
         $ticket->delete();
         return redirect('tickets')->with('success','Information has been  deleted');
     }
+
 }

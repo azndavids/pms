@@ -1,4 +1,6 @@
 
+<<<<<<< HEAD
+=======
 
 {{--  {!! Form::model($ticket, [
     'method' => 'PATCH',
@@ -9,6 +11,7 @@
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>  --}}
 
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -27,6 +30,18 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+  @foreach($data as $d)
+
+    <div class="main-content">
+
+        <!-- You only need this form and the form-basic.css -->
+        <div class="container-fluid">
+
+        <form class="form-basic" method="post" action="{{route('ticket.update')}}">
+
+@include('alert')
+=======
    
     <div class="main-content">
            
@@ -39,6 +54,7 @@
                 {{ Session::get('flash_message') }}
             </div>
         @endif
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
 
             {!! csrf_field() !!}
             {{ method_field('PATCH') }}
@@ -49,6 +65,19 @@
             <div class="form-row">
                 <label>
                     <span>Customer name</span>
+<<<<<<< HEAD
+                    <input type="text" name="customer_name" value={{$d->customer_name}}>
+                </label>
+
+                <label>
+                    <span>Log date</span>
+                    <input class="date"  type="date" id="datepicker" name="log_date" required="true" value={{$d->log_date}}>
+                </label>
+
+                <label>
+                    <span>Target date</span>
+                    <input class="date "  type="date" id="datepicker" name="target_date" required="true" value={{$d->target_date}}>
+=======
                     <input type="text" name="customer_name" value={{$ticket->customer_name}}>
                 </label>
             </div>
@@ -64,12 +93,26 @@
                 <label>
                     <span>Target date</span>
                     <input class="date "  type="date" id="datepicker" name="target_date" required="true" value={{$ticket->target_date}}>
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Completed date</span>
+<<<<<<< HEAD
+                    <input class="date "  type="date" id="datepicker" name="completed_date" required="true" value={{$d->completed_date}}>
+                </label>
+
+                <label>
+                    <span>Problem log</span>
+                    <textarea name="problem_log">{{$d->problem_log}}</textarea>
+                </label>
+
+                <label>
+                    <span>Problem title</span>
+                    <textarea name="problem_title">{{$d->problem_title}}</textarea>
+=======
                     <input class="date "  type="date" id="datepicker" name="completed_date" required="true" value={{$ticket->completed_date}}>
                 </label>
             </div>
@@ -85,6 +128,7 @@
                 <label>
                     <span>Problem title</span>
                     <textarea name="problem_title">{{$ticket->problem_title}}</textarea>
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                 </label>
             </div>
 
@@ -92,7 +136,11 @@
                 <label>
                     <span>Product</span>
                     <select name="product">
+<<<<<<< HEAD
+                        {{--  <option selected="selected" value={{$d->product}}>{{$d->product}}</option>  --}}
+=======
                         {{--  <option selected="selected" value={{$ticket->product}}>{{$ticket->product}}</option>  --}}
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                         <option>IPVPN</option>
                         <option>ADSL</option>
                         <option>SDSL</option>
@@ -111,6 +159,14 @@
                         <option>3G</option>
                     </select>
                 </label>
+<<<<<<< HEAD
+
+                <label>
+                    <span>Circuit number</span>
+                    <input type="text" name="circuit_number" value={{$d->circuit_number}}>
+                </label>
+
+=======
             </div>
 
             <div class="form-row">
@@ -121,6 +177,7 @@
             </div>
 
             <div class="form-row">
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                 <label>
                     <span>Status</span>
                     <select name="status">
@@ -136,6 +193,14 @@
                     <span>Created by</span>
                     <input type="text" value="{{Auth::user()->name}}" name="created_by">
                 </label>
+<<<<<<< HEAD
+
+                <label>
+                    <span>CTT (If any)</span>
+                    <input type="text" name="ctt" value={{$d->ctt}}>
+                </label>
+
+=======
             </div>
 
             <div class="form-row">
@@ -146,6 +211,7 @@
             </div>
 
             <div class="form-row">
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                 <label>
                     <span>Responsible team</span>
                     <select name="responsible_team">
@@ -171,9 +237,13 @@
                         <option>Major Incidents</option>
                     </select>
                 </label>
+<<<<<<< HEAD
+
+=======
             </div>
 
             <div class="form-row">
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                 <label>
                     <span>Priority</span>
                     <select name="priority">
@@ -182,14 +252,48 @@
                         <option>High</option>
                     </select>
                 </label>
+<<<<<<< HEAD
+
+=======
             </div>
 
             <div class="form-row">
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                 <!-- <button type="submit">Submit Form</button> -->
                 <td><button type="submit" name="submit">Submit Form</button></td>
             </div>
 
         </form>
+<<<<<<< HEAD
+      </div>
+
+        <div class="container-fluid">
+                <table class="table table-striped table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Remark</th>
+                      <th>Created At</th>
+                      <th>Updated At</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+
+                    @foreach($d->remarks as $data_remark)
+
+                    <tr>
+                      <td>{{$data_remark['id']}}</td>
+                      <td>{{$data_remark['remarks']}}</td>
+                      <td>{{$data_remark['created_at']}}</td>
+                      <td>{{$data_remark['updated_at']}}</td>
+
+
+                    </tr>
+                    @endforeach
+
+=======
        
         <div class="container">
                 <table class="table table-striped table-bordered">
@@ -221,12 +325,20 @@
                             </td>
                           </tr>
                          @endforeach
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
                         </tbody>
                       </table>
 
         </div>
+<<<<<<< HEAD
+
+    </div>
+    @endforeach
+
+=======
        
     </div>
+>>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
     <script type="text/javascript">
         $('#datepicker').datepicker({
             autoclose: true,
