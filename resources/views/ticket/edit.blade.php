@@ -27,9 +27,12 @@
 
 </head>
 <body>
+
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
+
+        <form class="form-basic" method="post" action="{{route('ticket.update')}}">
 
          @if(Session::has('flash_message'))
             <div class="alert alert-success">
@@ -187,6 +190,7 @@
             </div>
 
         </form>
+
         <div class="container">
                 <table class="table table-striped table-bordered">
                         <thead>
@@ -197,11 +201,16 @@
                           </tr>
                         </thead>
                         <tbody>
+
+
                         @foreach($ticket->remarks as $ticket_remark)
                           <tr>
                             <td>{{$ticket_remark['id']}}</td>
                             <td>{{$ticket_remark['remarks']}}</td>
                             {{--  <td>{{$date}}</td>  --}}
+
+
+
                             <td><a href="{{action('RemarkController@edit', $ticket_remark['id'])}}" class="btn btn-warning">Edit</a></td>
                             <td>
                               <form action="{{action('RemarkController@destroy', $ticket_remark['id'])}}" method="post">
@@ -216,6 +225,7 @@
                       </table>
 
         </div>
+
     </div>
     <script type="text/javascript">
         $('#datepicker').datepicker({
