@@ -65,6 +65,7 @@
         </style>
     </head>
     <body>
+      @include('alert')
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -82,7 +83,7 @@
                     Problem Management System
                 </div>
 
-                
+
             </div>
         </div>
     </body>

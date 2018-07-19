@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Ticket;
 
 class TicketController extends Controller
 {
@@ -13,7 +14,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets=\App\Ticket::all();
+        $data=$tickets->all();
+        dd($data);
+
         return view('index',compact('tickets'));
     }
 
@@ -22,9 +25,34 @@ class TicketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('create');//
+
+
+
+        $data = $request->all();
+        // dd($data);
+        $tickets= new Ticket;
+
+        $tickets->customer_name=$request->get('customer_name');
+        $tickets->log_date=$request->get('log_date');
+        $tickets->target_date=$request->get('target_date');
+        $tickets->completed_date=$request->get('completed_date');
+        $tickets->status=$request->get('status');
+        $tickets->created_by=$request->get('created_by');
+        $tickets->problem_log=$request->get('problem_log');
+        $tickets->problem_title=$request->get('problem_title');
+        $tickets->product=$request->get('product');
+        $tickets->circuit_number=$request->get('circuit_number');
+        $tickets->ctt=$request->get('ctt');
+        $tickets->responsible_team=$request->get('responsible_team');
+        $tickets->category=$request->get('category');
+        $tickets->priority=$request->get('priority');
+
+        $tickets->save();
+
+
+        return redirect()->route('home')->with('alert', 'Information has been added');
     }
 
     /**
@@ -51,7 +79,7 @@ class TicketController extends Controller
         $ticket->office=$request->get('office');
         $ticket->filename=$name;
         $ticket->save();
-        
+
         return redirect('tickets')->with('success', 'Information has been added');
     }
 

@@ -35,9 +35,11 @@ Route::get('performance', function () {
     return view('performance');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/create', 'TicketController@create')->name('ticket.create');
+
 Route::resource('tickets','TicketController');
 
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

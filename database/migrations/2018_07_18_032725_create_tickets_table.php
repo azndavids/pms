@@ -16,15 +16,18 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('customer_name');
-            $table->integer('log_date');
-            $table->integer('target_date');
-            $table->integer('completed_date');
+            $table->date('log_date');
+            $table->date('target_date');
+            $table->date('completed_date');
             $table->string('problem_log');
+            $table->string('problem_title');
             $table->string('product');
             $table->string('circuit_number');
             $table->string('ctt');
             $table->string('responsible_team');
             $table->string('category');
+            $table->string('status');
+            $table->string('created_by');
             $table->string('priority');
             $table->timestamps();
         });

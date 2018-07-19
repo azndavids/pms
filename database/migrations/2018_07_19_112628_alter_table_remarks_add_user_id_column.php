@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRemarksTable extends Migration
+class AlterTableRemarksAddUserIdColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateRemarksTable extends Migration
      */
     public function up()
     {
-        Schema::create('remarks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('remarks');
-            $table->timestamps();
-        });
+      Schema::table('remarks',function(Blueprint $table)
+      {
+      $table->integer('ticket_id')->unsigned()->after('remarks')->default(1);
+      });
     }
 
     /**
@@ -27,6 +26,8 @@ class CreateRemarksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('remarks');
+      Schema::table('remarks', function (Blueprint $table) {
+          $table->dropColumn('ticket_id');
+      });
     }
 }
