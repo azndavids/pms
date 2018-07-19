@@ -8,17 +8,11 @@
   <body>
     <div class="container">
     <br />
-<<<<<<< HEAD
+
       @include('alert')
     <table class="table table-bordered table-striped">
-=======
-    @if (Session::has('success'))
-      <div class="alert alert-success">
-        <p>{{ Session::get('success') }}</p>
-      </div><br />
-     @endif
-    <table class="table table-striped">
->>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
+
+
     <thead>
       <tr>
         <th>ID</th>
