@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
-<<<<<<< Updated upstream
 
-=======
 use Session;
->>>>>>> Stashed changes
+
 class TicketController extends Controller
 {
     /**
