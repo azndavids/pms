@@ -40,6 +40,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create', 'TicketController@create')->name('ticket.create');
 
 Route::resource('tickets','TicketController');
-
+Route::resource('remarks','RemarkController');
 
 Auth::routes();

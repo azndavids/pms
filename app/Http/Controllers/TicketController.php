@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
+use Session;
 class TicketController extends Controller
 {
     /**
@@ -49,7 +50,7 @@ class TicketController extends Controller
         $tickets->save();
 
 
-        return redirect()->route('home')->with('alert', 'Information has been added');
+        return redirect()->route('tickets.index')->with('alert', 'Information has been added');
     }
 
     /**
@@ -111,7 +112,24 @@ class TicketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket = Ticket::findOrFail($id);
+
+        // $this->validate($request, [
+        //     'title' => 'required',
+        //     'description' => 'required'
+        // ]);
+
+        $input = $request->except(['_token','_method','submit']);
+
+        $ticket->fill($input)->save();
+        // dd($request->all());
+        // Ticket::where('id', $ticket)->update($request->except(['_token','_method','submit']));
+
+       
+
+        Session::flash('flash_message', 'Ticket successfully updated!');
+        return redirect()->back();
+        // return Redirect::to('tickets');
     }
 
     /**
