@@ -11,7 +11,8 @@ class Ticket extends Model
     // table name
      protected $table = 'tickets';
      public $timestamps = true;
-
+     // tak tahu la guarded ni apa hmm
+     protected $guarded = [];
 
 public function remarks()
 {

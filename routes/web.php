@@ -48,6 +48,6 @@ Route::get('/edit/{ticket}', 'TicketController@edit')->name('ticket.edit');
 
 
 Route::resource('tickets','TicketController');
-
+Route::resource('remarks','RemarkController');
 
 Auth::routes();
