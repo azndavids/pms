@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
+use App\Remark;
 
 use Session;
 
@@ -52,7 +53,7 @@ class TicketController extends Controller
         $tickets->save();
 
 
-        return redirect()->route('tickets.index')->with('alert', 'Information has been added');
+        return redirect()->route('tickets.index')->with(['alert-msg' => 'Even registered successfully', 'alert-type' => 'success']);
     }
 
     /**

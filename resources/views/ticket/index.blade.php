@@ -8,12 +8,8 @@
   <body>
     <div class="container">
     <br />
-    @if (Session::has('success'))
-      <div class="alert alert-success">
-        <p>{{ Session::get('success') }}</p>
-      </div><br />
-     @endif
-    <table class="table table-striped">
+      @include('alert')
+    <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>ID</th>
