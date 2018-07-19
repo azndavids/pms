@@ -3,17 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Index Page</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   </head>
   <body>
     <div class="container">
     <br />
-    @if (\Session::has('success'))
-      <div class="alert alert-success">
-        <p>{{ \Session::get('success') }}</p>
-      </div><br />
-     @endif
-    <table class="table table-striped">
+      @include('alert')
+    <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>ID</th>
@@ -33,11 +29,11 @@
       </tr>
     </thead>
     <tbody>
-      
+
       @foreach($tickets as $ticket)
        {{--  @php  --}}
         {{--  $date=date('Y-m-d', $passport['date']);  --}}
-        {{--  @endphp  --}}  
+        {{--  @endphp  --}}
       <tr>
         <td>{{$ticket['id']}}</td>
         <td>{{$ticket['customer_name']}}</td>
@@ -53,16 +49,11 @@
         <td>{{$ticket['log_date']}}</td>
         <td>{{$ticket['target_date']}}</td>
         <td>{{$ticket['completed_date']}}</td>
-      
-        
-        <td><a href="{{action('TicketController@edit', $ticket['id'])}}" class="btn btn-warning">Edit</a></td>
-        <td>
-          <form action="{{action('TicketController@destroy', $ticket['id'])}}" method="post">
-            @csrf
-            <input name="_method" type="hidden" value="DELETE">
-            <button class="btn btn-danger" type="submit">Delete</button>
-          </form>
-        </td>
+
+
+        <td><a href="{{route('ticket.remarks',$ticket['id'])}}" class="btn btn-info">Remarks</a></td>
+        <td><a href="{{route('ticket.edit',$ticket['id'])}}" class="btn btn-info">Edit</a></td>
+
       </tr>
       @endforeach
     </tbody>

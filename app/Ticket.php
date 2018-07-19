@@ -18,5 +18,10 @@ public function remarks()
       return $this->hasMany('App\Remark');
 }
 
+public function delete()
+{
+    $this->remarks()->delete();
+    return parent::delete();
+}
 
 }
