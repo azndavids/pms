@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
-
 class TicketController extends Controller
 {
     /**
@@ -14,10 +13,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $data=$tickets->all();
-        dd($data);
-
-        return view('index',compact('tickets'));
+        $tickets=Ticket::all();
+        return view('ticket.index',compact('tickets'));
     }
 
     /**
@@ -100,9 +97,9 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ticket $ticket)
     {
-        //
+        return view('ticket.edit', compact('ticket'));
     }
 
     /**
