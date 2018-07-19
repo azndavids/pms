@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
-<<<<<<< HEAD
-use App\Remark;
-=======
 
+use App\Remark;
 use Session;
->>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
+
 
 class TicketController extends Controller
 {
@@ -83,11 +81,8 @@ class TicketController extends Controller
         $tickets->save();
 
 
-<<<<<<< HEAD
         return redirect()->route('tickets.index')->with(['alert-msg' => 'Even registered successfully', 'alert-type' => 'success']);
-=======
-        return redirect()->route('tickets.index')->with('alert', 'Information has been added');
->>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
+
     }
 
     /**
@@ -178,11 +173,13 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function destroy($id)
-         {
-             //
-             $ticket =Ticket::find($id);
-             $ticket->delete();
-             return redirect('tickets')->with('success','Information has been  deleted');
-         }
+
+    public function destroy($id)
+    {
+        
+        $ticket =Ticket::find($id);
+        $ticket->delete();
+        return redirect('tickets')->with('success','Information has been  deleted');
+    }
+
 }

@@ -22,6 +22,7 @@ public function remarks()
 public function delete()
 {
     $this->remarks()->delete();
+
     return parent::delete();
 }
 
