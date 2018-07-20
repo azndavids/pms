@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ticket;
-
 use App\Remark;
-use Session;
-
 
 class TicketController extends Controller
 {
@@ -45,7 +42,7 @@ class TicketController extends Controller
       $id=$request->get('ticket_id');
 
 
-      return redirect()->route('ticket.remarks',$id)->with(['alert-msg' => 'Even registered successfully', 'alert-type' => 'success']);
+      return redirect()->route('ticket.remarks',$id)->with(['alert-msg' => 'Remarks added successfully', 'alert-type' => 'success']);
 
     }
 
@@ -81,8 +78,7 @@ class TicketController extends Controller
         $tickets->save();
 
 
-        return redirect()->route('tickets.index')->with(['alert-msg' => 'Even registered successfully', 'alert-type' => 'success']);
-
+        return redirect()->route('tickets.index')->with(['alert-msg' => 'Ticket created successfully', 'alert-type' => 'success']);
     }
 
     /**
@@ -110,7 +106,7 @@ class TicketController extends Controller
         $ticket->filename=$name;
         $ticket->save();
 
-        return redirect('tickets')->with('success', 'Information has been added');
+        return redirect('tickets')->with(['alert-msg' => 'successfully', 'alert-type' => 'success']);
     }
 
     /**
@@ -145,26 +141,62 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $ticket = Ticket::findOrFail($id);
 
-        // $this->validate($request, [
-        //     'title' => 'required',
-        //     'description' => 'required'
-        // ]);
+      // dd($request->get('tid'));
 
-        $input = $request->except(['_token','_method','submit']);
+        $tickets = Ticket::find($request->get('tid'));
 
-        $ticket->fill($input)->save();
+        $tickets->customer_name=$request->get('customer_name');
+        $tickets->log_date=$request->get('log_date');
+        $tickets->target_date=$request->get('target_date');
+        $tickets->completed_date=$request->get('completed_date');
+        $tickets->status=$request->get('status');
+        $tickets->created_by=$request->get('created_by');
+        $tickets->problem_log=$request->get('problem_log');
+        $tickets->problem_title=$request->get('problem_title');
+        $tickets->product=$request->get('product');
+        $tickets->circuit_number=$request->get('circuit_number');
+        $tickets->ctt=$request->get('ctt');
+        $tickets->responsible_team=$request->get('responsible_team');
+        $tickets->category=$request->get('category');
+        $tickets->priority=$request->get('priority');
+
+        $tickets->save();
+
+        $id=$request->get('tid');
+
+        return redirect()->route('ticket.edit',$id)->with(['alert-msg' => 'Ticket updated successfully', 'alert-type' => 'success']);
+
+    }
+
+    public function updateremark(Request $request)
+    {
+
         // dd($request->all());
-        // Ticket::where('id', $ticket)->update($request->except(['_token','_method','submit']));
 
-       
+        $id=$request->get('id');
+        $rem=$request->get('remarks');
 
-        Session::flash('flash_message', 'Ticket successfully updated!');
-        return redirect()->back();
-        // return Redirect::to('tickets');
+        $count = 0;
+        foreach($id as $i)
+        {
+            $remark = Remark::find($i);
+            $remark->remarks = $rem[$count];
+            $remark->save();
+
+            $count++;
+        }
+
+        // $tickets = App\Ticket::find($request->get('ticket_id'));
+        // $tickets->save();
+
+        // $id=$request->get('ticket_id');
+        $tid=$request->get('tixd');
+
+        return redirect()->route('ticket.edit',$tid)->with(['alert-msg' => 'Remark updated successfully', 'alert-type' => 'success']);
+
     }
 
     /**
@@ -173,13 +205,18 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy($id)
-    {
-        
-        $ticket =Ticket::find($id);
-        $ticket->delete();
-        return redirect('tickets')->with('success','Information has been  deleted');
-    }
-
+     public function destroy($id)
+         {
+             
+             $ticket =Ticket::find($id);
+             $ticket->delete();
+             return redirect('tickets')->with(['alert-msg' => 'Deleted successfully', 'alert-type' => 'success']);
+         }
+         public function destroyremark($id)
+         {
+             dd($id);
+             $remark =Remark::find($id);
+             $remark->delete();
+             return redirect('tickets')->with(['alert-msg' => 'Deleted successfully', 'alert-type' => 'success']);
+         }
 }

@@ -16,12 +16,14 @@ class Ticket extends Model
 
 public function remarks()
 {
-      return $this->hasMany('App\Remark');
+      return $this->hasMany('App\Remark')->orderByDesc('created_at');
 }
 
 public function delete()
 {
     $this->remarks()->delete();
+    return parent::delete();
+}
 
     return parent::delete();
 }

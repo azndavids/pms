@@ -20,6 +20,8 @@
                 <div class="">
                     <td><button onclick="location.href='{{ url('create') }}'">
                         Create</button></td>
+                        <td><button onclick="location.href='{{ route('tickets.index') }}'">
+                            Ticket</button></td>
                 </div>
             </div>
         </div>

@@ -1,21 +1,10 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Form</title>
-
-    <!-- Fonts -->
-    <link href="{{ asset('css/base.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/form-input.css') }}" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
-
-
-</head>
-<body>
+<!-- <link href="{{ asset('css/base.css') }}" rel="stylesheet" /> -->
+<link href="{{ asset('css/form-input.css') }}" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+@section('content')
     <div class="main-content">
 
         <!-- You only need this form and the form-basic.css -->
@@ -32,40 +21,30 @@
                     <span>Customer name</span>
                     <input type="text" name="customer_name">
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>Log date</span>
-                    <input class="date form-control"  type="date" id="datepicker" name="log_date" required="true">
+                    <input class="date"  type="date" id="datepicker" name="log_date" required="true">
+                </label>
+                <label>
+                        <span>Problem title</span>
+                        <textarea name="problem_title"></textarea>
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Target date</span>
-                    <input class="date form-control"  type="date" id="datepicker" name="target_date" required="true">
+                    <input class="datel"  type="date" id="datepicker" name="target_date" required="true">
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>Completed date</span>
-                    <input class="date form-control"  type="date" id="datepicker" name="completed_date" required="true">
+                    <input class="date"  type="date" id="datepicker" name="completed_date" required="true">
                 </label>
-            </div>
-
-            <div class="form-row">
                 <label>
-                    <span>Problem log</span>
-                    <textarea name="problem_log"></textarea>
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Problem title</span>
-                    <textarea name="problem_title"></textarea>
+                        <span>Problem log</span>
+                        <textarea name="problem_log"></textarea>
                 </label>
             </div>
 
@@ -91,16 +70,12 @@
                         <option>3G</option>
                     </select>
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>Circuit number</span>
                     <input type="text" name="circuit_number">
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>Status</span>
                     <select name="status">
@@ -116,16 +91,12 @@
                     <span>Created by</span>
                     <input type="text" value="{{Auth::user()->name}}" name="created_by">
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>CTT (If any)</span>
                     <input type="text" name="ctt">
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>Responsible team</span>
                     <select name="responsible_team">
@@ -151,9 +122,7 @@
                         <option>Major Incidents</option>
                     </select>
                 </label>
-            </div>
 
-            <div class="form-row">
                 <label>
                     <span>Priority</span>
                     <select name="priority">
@@ -166,7 +135,7 @@
 
             <div class="form-row">
                 <!-- <button type="submit">Submit Form</button> -->
-                <td><button type="submit" name="submit">Submit Form</button></td>
+                <td><button class="btn btn-lg btn-info" type="submit" name="submit">Submit Form</button></td>
             </div>
 
         </form>
@@ -178,5 +147,4 @@
             format: 'dd-mm-yyyy'
          });
     </script>
-</body>
-</html>
+@endsection

@@ -39,11 +39,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/create', 'TicketController@create')->name('ticket.create');
 Route::post('/update', 'TicketController@update')->name('ticket.update');
+Route::post('/updateremark', 'TicketController@updateremark')->name('remark.update');
 Route::post('/add', 'TicketController@add')->name('remark.add');
 
 
 Route::get('/remarks/{ticket}', 'TicketController@remarks')->name('ticket.remarks');
 Route::get('/edit/{ticket}', 'TicketController@edit')->name('ticket.edit');
+
+Route::post('destroyremark', 'TicketController@destroyremark');
 
 
 

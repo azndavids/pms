@@ -1,29 +1,21 @@
+@extends('layouts.app')
 
 
 
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
 
-    <title>Update Form</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <!-- Fonts -->
-    <link href="{{ asset('css/base.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/form-input.css') }}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 
-</head>
-<body>
-  @foreach($data as $d)
 
-    <div class="main-content">
-      <div class="container-fluid">
-        @include('alert')
+  @foreach($data as $d)
+ 
+
+    <div class="p-3 mb-2 bg-white">
+      <div class="container">
+          @include('alert')
         <!-- You only need this form and the form-basic.css -->
 
         <table class="table table-bordered table-striped">
@@ -33,11 +25,11 @@
             <th>Cust Name</th>
             <th>Circuit No</th>
             <th>Product</th>
-            <th>Created By*</th>
+            <th>Created By</th>
             <th>Responsible Team</th>
             <th>Priority</th>
             <th>Problem Log</th>
-            <th>Status*</th>
+            <th>Status</th>
             <th>CTT</th>
             <th>Date Log</th>
             <th>Target Date</th>
@@ -53,11 +45,11 @@
             {{--  <td>{{$date}}</td>  --}}
             <td>{{$d->circuit_number}}</td>
             <td>{{$d->product}}</td>
-            <td>*</td>
+            <td>{{$d->created_by}}</td>
             <td>{{$d->responsible_team}}</td>
             <td>{{$d->priority}}</td>
             <td>{{$d->problem_log}}</td>
-            <td>*</td>
+            <td>{{$d->status}}</td>
             <td>{{$d->ctt}}</td>
             <td>{{$d->log_date}}</td>
             <td>{{$d->target_date}}</td>
@@ -65,19 +57,20 @@
 
 
             <td><a href="{{route('ticket.edit',$d['id'])}}" class="btn btn-info">Edit</a></td>
-            <td>
-              <form action="{{action('TicketController@destroy', $d['id'])}}" method="post">
-                @csrf
-                <input name="_method" type="hidden" value="DELETE">
-                <button class="btn btn-danger" type="submit">Delete</button>
-              </form>
-            </td>
+           <td>   
+            <form action="{{action('TicketController@destroy', $d['id'])}}" method="post">
+              @csrf
+              <input name="_method" type="hidden" value="DELETE">
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </td>
+
           </tr>
         </tbody>
       </table>
 
         <div class="container">
-                <table class="table table-striped table-bordered">
+                <table class="table table-bordered">
                         <thead>
                           <tr>
                             <th>ID</th>
@@ -108,7 +101,7 @@
 
                         </tbody>
                       </table>
-                      <form class="form-basic" method="post" action="{{route('remark.add')}}">
+                      <form method="post" action="{{route('remark.add')}}">
                         {!! csrf_field() !!}
 
                       <div class="form-row">
@@ -120,7 +113,7 @@
                         </label>
                         <input type="hidden"  name="ticket_id" value={{$d->id}}>
 
-                        <button type="submit" name="submit">Submit Remarks</button>
+                        <button class="btn btn-primary" type="submit" style="margin:0px 5px;" name="submit">Submit Remarks</button>
 
 
 
@@ -142,5 +135,4 @@
             format: 'dd-mm-yyyy'
          });
     </script>
-</body>
-</html>
+    @endsection

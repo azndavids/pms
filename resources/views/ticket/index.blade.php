@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Index Page</title>
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-  </head>
-  <body>
-    <div class="container">
+@extends('layouts.app')
+
+@section('content')
+    <div class="container-fluid bg-white">
     <br />
-<<<<<<< HEAD
       @include('alert')
     <table class="table table-bordered table-striped">
-=======
-    @if (Session::has('success'))
-      <div class="alert alert-success">
-        <p>{{ Session::get('success') }}</p>
-      </div><br />
-     @endif
-    <table class="table table-striped">
->>>>>>> 9214e55d5432443e5cfab9b7bc4d43119ac86d89
     <thead>
       <tr>
         <th>ID</th>
@@ -67,6 +53,6 @@
       @endforeach
     </tbody>
   </table>
+  <br>
   </div>
-  </body>
-</html>
+@endsection
