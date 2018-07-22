@@ -23,32 +23,51 @@
                 </label>
 
                 <label>
-                    <span>Log date</span>
-                    <input class="date"  type="date" id="datepicker" name="log_date" required="true">
-                </label>
+                        <span>Category</span>
+                        <select name="category">
+                            <option>Process</option>
+                            <option>System</option>
+                            <option>People</option>
+                            <option>Re-engineering</option>
+                            <option>Post-Mortem</option>
+                            <option>Repeated Issues</option>
+                            <option>Major Incidents</option>
+                        </select>
+                    </label>
+                
+               
                 <label>
-                        <span>Problem title</span>
-                        <textarea name="problem_title"></textarea>
+                        <span>Target date</span>
+                        <input class="datel"  type="date" id="datepicker" name="target_date" required="true">
                 </label>
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Target date</span>
-                    <input class="datel"  type="date" id="datepicker" name="target_date" required="true">
-                </label>
-
-                <label>
-                    <span>Completed date</span>
-                    <input class="date"  type="date" id="datepicker" name="completed_date" required="true">
-                </label>
-                <label>
+                
+                 <label>
                         <span>Problem log</span>
                         <textarea name="problem_log"></textarea>
                 </label>
+                <label>
+                        <span>Status</span>
+                        <select name="status">
+                            <option>pending</option>
+                            <option>ongoing</option>
+                            <option>completed</option>
+                        </select>
+                    </label>
+                <label>
+                        <span>Log date</span>
+                        <input class="date"  type="date" id="datepicker" name="log_date" required="true">
+                </label>
+                
             </div>
 
             <div class="form-row">
+                    <label>
+                            <span>Problem title</span>
+                            <textarea name="problem_title"></textarea>
+                    </label>
                 <label>
                     <span>Product</span>
                     <select name="product">
@@ -70,33 +89,20 @@
                         <option>3G</option>
                     </select>
                 </label>
-
                 <label>
-                    <span>Circuit number</span>
-                    <input type="text" name="circuit_number">
+                        <span>Completed date</span>
+                        <input class="date"  type="date" id="datepicker" name="completed_date" required="true">
                 </label>
-
-                <label>
-                    <span>Status</span>
-                    <select name="status">
-                        <option>pending</option>
-                        <option>ongoing</option>
-                        <option>completed</option>
-                    </select>
-                </label>
+                
+               
+               
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Created by</span>
-                    <input type="text" value="{{Auth::user()->name}}" name="created_by">
-                </label>
-
-                <label>
-                    <span>CTT (If any)</span>
-                    <input type="text" name="ctt">
-                </label>
-
+                 <label>
+                      <span>Circuit number</span>
+                     <input type="text" name="circuit_number">
+                 </label>
                 <label>
                     <span>Responsible team</span>
                     <select name="responsible_team">
@@ -107,21 +113,17 @@
                         <option>CD</option>
                     </select>
                 </label>
+                <label>
+                        <span>CTT (If any)</span>
+                        <input type="text" name="ctt">
+                </label>
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Category</span>
-                    <select name="category">
-                        <option>Process</option>
-                        <option>System</option>
-                        <option>People</option>
-                        <option>Re-engineering</option>
-                        <option>Post-Mortem</option>
-                        <option>Repeated Issues</option>
-                        <option>Major Incidents</option>
-                    </select>
-                </label>
+                 <label>
+                       <span>Created by</span>
+                        <input type="text" value="{{Auth::user()->name}}" name="created_by">
+                 </label>
 
                 <label>
                     <span>Priority</span>
@@ -131,6 +133,7 @@
                         <option>High</option>
                     </select>
                 </label>
+               
             </div>
 
             <div class="form-row">

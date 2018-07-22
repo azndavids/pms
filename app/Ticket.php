@@ -25,7 +25,5 @@ public function delete()
     return parent::delete();
 }
 
-    return parent::delete();
-}
 
 }
